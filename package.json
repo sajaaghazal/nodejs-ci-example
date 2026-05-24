@@ -1,0 +1,12 @@
+{
+  "name": "nodejs-ci-example",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for CI with GitHub Actions lab",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
