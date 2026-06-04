@@ -9,19 +9,15 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-
     - name: Install dependencies
       run: npm install
-
     - name: Run tests
       run: npm test
 
@@ -37,3 +33,15 @@ jobs:
           echo "Deploying application to Staging environment..."
           echo "Application version: $(git rev-parse --short HEAD)"
           echo "Deployment to Staging successful!"
+
+  deploy-to-production:
+    needs: deploy-to-staging
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Simulate deployment to Production
+        run: |
+          echo "Deploying application to Production environment..."
+          echo "Deployment to Production successful!"
