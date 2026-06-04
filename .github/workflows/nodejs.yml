@@ -44,4 +44,19 @@ jobs:
       - name: Simulate deployment to Production
         run: |
           echo "Deploying application to Production environment..."
-          echo "Deployment to Production successful!"
+          echo "Application version: $(git rev-parse --short HEAD)"
+      - name: Simulated health check
+        run: |
+          echo "Running health checks..."
+          echo "Health endpoint: https://yourapp.com/health (simulated)"
+          
+          # Simulate a random health check result (50% pass, 50% fail)
+          if [ $((RANDOM % 2)) -eq 0 ]; then
+            echo "✅ Health check passed!"
+            echo "Deployment to Production successful!"
+          else
+            echo "❌ Simulated health check failure!"
+            echo "HTTP 500 - Service Unhealthy"
+            echo "Error: Exit with non-zero code to trigger rollback"
+            exit 1
+          fi
